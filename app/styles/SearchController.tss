@@ -1,0 +1,14 @@
+"#backButton" : {
+	width: Ti.UI.SIZE,
+	top: 15,
+	left: 10
+}
+
+"#titleLabel" : {
+	width: Ti.UI.FILL,
+	textAlign: "center",
+	top: 15
+}
+"#header" : {
+	backgroundColor: "F1F1F1"
+}

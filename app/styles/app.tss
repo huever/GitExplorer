@@ -1,0 +1,8 @@
+"Window": {
+	backgroundColor:"white",
+	layout: "vertical"
+}
+
+".title": {
+	top: 20
+}

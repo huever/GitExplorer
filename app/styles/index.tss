@@ -1,8 +1,22 @@
 ".container": {
 	backgroundColor:"white"
 },
-"Label": {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
-	color: "#000"
-} 
+"Window": {
+	layout: "vertical"
+},
+"TextField": {
+	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	color:"#336699",
+	height: 40,
+	width: 300,
+	top: 10
+},
+".searchButton":{
+	width: 300,
+	height: 40,
+	backgroundColor: "white",
+	borderRadius: 5,
+	borderColor: "#a5d686",
+	color: "black",
+	top: 10
+}

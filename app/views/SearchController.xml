@@ -1,0 +1,10 @@
+<Alloy>
+	<Window class="container" id="mainContainer">
+		<View id="header" height="Ti.UI.SIZE">
+			<Button id="backButton" onClick="backToHome">back</Button>
+			<Label id="titleLabel" class="title">Busqueda</Label>
+		</View>
+		<View id="tableView">
+		</View>
+	</Window>
+</Alloy>
