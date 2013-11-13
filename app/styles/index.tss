@@ -1,12 +1,10 @@
-".container": {
-	backgroundColor:"white"
-},
 "Window": {
 	layout: "vertical"
 },
 "TextField": {
 	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
 	color:"#336699",
+	backgroundColor: "#ccdbe2",
 	height: 40,
 	width: 300,
 	top: 10
@@ -14,9 +12,13 @@
 ".searchButton":{
 	width: 300,
 	height: 40,
-	backgroundColor: "white",
+	backgroundColor: "#6F8896",
 	borderRadius: 5,
-	borderColor: "#a5d686",
-	color: "black",
+	borderColor: "#5a6f7a",
+	color: "white",
 	top: 10
+},
+"#logo": {
+	image: "/images/github-logo.png",
+	top: 20
 }

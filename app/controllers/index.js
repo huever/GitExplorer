@@ -1,5 +1,8 @@
+$.title.text = L('indexTitle');
+$.search.title = L('indexSearchButton');
+
 function search(e) {
-	if ($.searchField.value === "" ) {
+	if ($.searchField.value === "") {
 		alert("Complete");
 	} else {
 		goToNext($.searchField.value);
@@ -18,5 +21,12 @@ function goToNext(searchText) {
 		searchController.getView().open();
 	}
 }
+
+$.logo.addEventListener("click", function() {
+	if (OS_IOS)
+		$.searchField.blur();
+	else
+		Ti.Android.hideSoftKeyboard();
+});
 
 $.index.open();

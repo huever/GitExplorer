@@ -6,9 +6,7 @@ function Controller() {
         var searchController = Alloy.createController("SearchController", {
             searchText: searchText
         });
-        searchController.getView().open({
-            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
-        });
+        searchController.getView().open();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
@@ -24,15 +22,15 @@ function Controller() {
         id: "index"
     });
     $.__views.index && $.addTopLevelView($.__views.index);
-    $.__views.__alloyId1 = Ti.UI.createLabel({
+    $.__views.title = Ti.UI.createLabel({
         top: 20,
-        text: "Busqueda",
-        id: "__alloyId1"
+        id: "title"
     });
-    $.__views.index.add($.__views.__alloyId1);
+    $.__views.index.add($.__views.title);
     $.__views.searchField = Ti.UI.createTextField({
         borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         color: "#336699",
+        backgroundColor: "#ccdbe2",
         height: 40,
         width: 300,
         top: 10,
@@ -42,18 +40,28 @@ function Controller() {
     $.__views.search = Ti.UI.createButton({
         width: 300,
         height: 40,
-        backgroundColor: "white",
+        backgroundColor: "#6F8896",
         borderRadius: 5,
-        borderColor: "#a5d686",
-        color: "black",
+        borderColor: "#5a6f7a",
+        color: "white",
         top: 10,
-        title: "Buscar",
         id: "search"
     });
     $.__views.index.add($.__views.search);
     search ? $.__views.search.addEventListener("click", search) : __defers["$.__views.search!click!search"] = true;
+    $.__views.logo = Ti.UI.createImageView({
+        image: "/images/github-logo.png",
+        top: 20,
+        id: "logo"
+    });
+    $.__views.index.add($.__views.logo);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    $.title.text = L("indexTitle");
+    $.search.title = L("indexSearchButton");
+    $.logo.addEventListener("click", function() {
+        Ti.Android.hideSoftKeyboard();
+    });
     $.index.open();
     __defers["$.__views.search!click!search"] && $.__views.search.addEventListener("click", search);
     _.extend($, exports);

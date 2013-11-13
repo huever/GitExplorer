@@ -1,7 +1,8 @@
 <Alloy>
 	<Window class="container">
-		<Label class="title">Busqueda</Label>
+		<Label class="title" id="title"></Label>
 		<TextField id="searchField" />
-		<Button class="searchButton" id="search" onClick="search">Buscar</Button>
+		<Button class="searchButton" id="search" onClick="search"></Button>
+		<ImageView id="logo">
 	</Window>
 </Alloy>

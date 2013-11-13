@@ -1,0 +1,15 @@
+<Alloy>
+	<Window class="container" id="mainContainer">
+		<View id="header" height="Ti.UI.SIZE">
+			<Button id="backButton" onClick="back"></Button>
+			<Label id="titleLabel" class="title"></Label>			
+		</View>
+		<View id="border"></View>
+		<Label id="owner"></Label>
+		<ImageView id="avatar"></ImageView>
+		<Label id="description" class="labelTitle"></Label>
+		<Label id="descriptionText" class="description"></Label>
+		<Label id="url" class="labelTitle"></Label>
+		<Label id="urlText" class="description"></Label>		
+	</Window>
+</Alloy>

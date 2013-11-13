@@ -1,13 +1,14 @@
 var args = arguments[0];
 
+$.titleLabel.text = '"' + args.searchText + '"';
 //var url = "https://api.github.com/search/repositories?q=" + args.searchText + "+language:assembly&sort=stars&order=desc";
 var url = "https://api.github.com/search/repositories?q=" + args.searchText + "&order=desc";
 var xhr = Ti.Network.createHTTPClient({
 	onload : function(e) {
 		var json = JSON.parse(this.responseText);
-		if(json.items.lenght == 0)
+		if (json.items.lenght == 0)
 			alert('No hay resultados');
-			
+
 		addTable(json);
 	},
 	onerror : function(e) {
@@ -33,7 +34,7 @@ function backToHome() {
 }
 
 var searchbar = Ti.UI.createSearchBar({
-	barColor : '#dddddd',
+	barColor : '#6f8896',
 	showCancel : false
 });
 
@@ -42,7 +43,9 @@ function addTable(JSONdata) {
 	var data = JSONdata;
 	for (var i = 0; i < data.items.length; i++) {
 		var row = Ti.UI.createTableViewRow({
-			data : data.items[i].name
+			data : data.items[i].name,
+			test : "DetailController",
+			info : data.items[i]
 		});
 
 		var title = Ti.UI.createLabel({
@@ -68,6 +71,8 @@ function addTable(JSONdata) {
 			text : subtitleText
 		});
 
+		row.hasDetail = true;
+
 		row.add(title);
 		row.add(subtitle);
 		row.setLayout('vertical');
@@ -81,6 +86,20 @@ function addTable(JSONdata) {
 		search : searchbar,
 		hideSearchOnSelection : true,
 		data : tableData
+	});
+
+	// create table view event listener
+	table.addEventListener('click', function(e) {
+		if (e.rowData.test) {
+			var detailController = Alloy.createController(e.rowData.test, {info: e.rowData.info});
+			if (OS_IOS) {
+				detailController.getView().open({
+					transition : Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
+				});
+			} else {
+				detailController.getView().open();
+			}
+		}
 	});
 
 	// now assign that array to the table's data property to add those objects as rows

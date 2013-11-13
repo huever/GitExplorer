@@ -1,15 +1,15 @@
 function Controller() {
     function backToHome() {
-        $.mainContainer.close({
-            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT
-        });
+        $.mainContainer.close();
     }
     function addTable(JSONdata) {
         var tableData = new Array();
         var data = JSONdata;
         for (var i = 0; data.items.length > i; i++) {
             var row = Ti.UI.createTableViewRow({
-                data: data.items[i].name
+                data: data.items[i].name,
+                test: "DetailController",
+                info: data.items[i]
             });
             var title = Ti.UI.createLabel({
                 left: 15,
@@ -27,6 +27,7 @@ function Controller() {
                 },
                 text: subtitleText
             });
+            row.hasDetail = true;
             row.add(title);
             row.add(subtitle);
             row.setLayout("vertical");
@@ -38,6 +39,14 @@ function Controller() {
             search: searchbar,
             hideSearchOnSelection: true,
             data: tableData
+        });
+        table.addEventListener("click", function(e) {
+            if (e.rowData.test) {
+                var detailController = Alloy.createController(e.rowData.test, {
+                    info: e.rowData.info
+                });
+                detailController.getView().open();
+            }
         });
         $.tableView.add(table);
     }
@@ -65,19 +74,24 @@ function Controller() {
         width: Ti.UI.SIZE,
         top: 15,
         left: 10,
-        title: "back",
+        title: L("backButton"),
         id: "backButton"
     });
     $.__views.header.add($.__views.backButton);
     backToHome ? $.__views.backButton.addEventListener("click", backToHome) : __defers["$.__views.backButton!click!backToHome"] = true;
     $.__views.titleLabel = Ti.UI.createLabel({
-        top: 15,
+        top: 18,
         width: Ti.UI.FILL,
         textAlign: "center",
-        text: "Busqueda",
         id: "titleLabel"
     });
     $.__views.header.add($.__views.titleLabel);
+    $.__views.border = Ti.UI.createView({
+        borderColor: "#536570",
+        height: 1,
+        id: "border"
+    });
+    $.__views.mainContainer.add($.__views.border);
     $.__views.tableView = Ti.UI.createView({
         id: "tableView"
     });
@@ -85,6 +99,7 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0];
+    $.titleLabel.text = '"' + args.searchText + '"';
     var url = "https://api.github.com/search/repositories?q=" + args.searchText + "&order=desc";
     var xhr = Ti.Network.createHTTPClient({
         onload: function() {
@@ -101,7 +116,7 @@ function Controller() {
     xhr.open("GET", url);
     xhr.send();
     var searchbar = Ti.UI.createSearchBar({
-        barColor: "#dddddd",
+        barColor: "#6f8896",
         showCancel: false
     });
     __defers["$.__views.backButton!click!backToHome"] && $.__views.backButton.addEventListener("click", backToHome);

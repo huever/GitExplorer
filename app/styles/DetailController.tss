@@ -17,3 +17,17 @@
 	borderColor: "#536570",
 	height: 1
 }
+"#avatar" : {
+	width: 100,
+	height: 100,
+	top: 15
+}
+".description" : {
+	left: 10,
+	font: {fontSize : 14},
+}
+".labelTitle" : {
+	left: 5,
+	font: {fontSize : 18},
+	top: 10
+}

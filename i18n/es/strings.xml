@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="indexTitle">Git Explorer</string>
+	<string name="indexSearchButton">Buscar</string>
+	
+	<string name="backButton">volver</string>
+	
+	<string name="detailDescription">Descripción</string>
+	<string name="detailURL">URL del Proyecto</string>
+</resources>
