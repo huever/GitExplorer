@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+provisioning_profiles/development/45B39DFD-D18B-4505-8E51-61578E5899E8/appid=*
+provisioning_profiles/development/45B39DFD-D18B-4505-8E51-61578E5899E8/name=Bci Generico
+provisioning_profiles/development/45B39DFD-D18B-4505-8E51-61578E5899E8/uuid=45B39DFD-D18B-4505-8E51-61578E5899E8
+provisioning_profiles/development/742B8B6F-B844-4DFC-AD8A-FD6CEF55B70F/appid=com.bci.*
+provisioning_profiles/development/742B8B6F-B844-4DFC-AD8A-FD6CEF55B70F/name=Bci Personas Generico
+provisioning_profiles/development/742B8B6F-B844-4DFC-AD8A-FD6CEF55B70F/uuid=742B8B6F-B844-4DFC-AD8A-FD6CEF55B70F
+provisioning_profiles/development/74E42571-9313-4F93-B9C2-038DC29D5B9C/appid=*
+provisioning_profiles/development/74E42571-9313-4F93-B9C2-038DC29D5B9C/name=iOS Team Provisioning Profile\: *
+provisioning_profiles/development/74E42571-9313-4F93-B9C2-038DC29D5B9C/uuid=74E42571-9313-4F93-B9C2-038DC29D5B9C
+provisioning_profiles/development/C92C4C73-FAC2-4ED9-A93D-7798D10199CE/appid=*
+provisioning_profiles/development/C92C4C73-FAC2-4ED9-A93D-7798D10199CE/name=iOS Team Provisioning Profile\: *
+provisioning_profiles/development/C92C4C73-FAC2-4ED9-A93D-7798D10199CE/uuid=C92C4C73-FAC2-4ED9-A93D-7798D10199CE

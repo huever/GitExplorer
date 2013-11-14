@@ -1,0 +1,11 @@
+<Alloy>
+	<Window class="container" id="mainContainer">
+		<View id="header" height="Ti.UI.SIZE">
+			<Button id="backButton" onClick="backToHome"></Button>
+			<Label id="titleLabel" class="title"></Label>
+		</View>
+		<View id="border"></View>
+		<View id="tableView">
+		</View>
+	</Window>
+</Alloy>

@@ -1,5 +1,6 @@
 $.title.text = L('indexTitle');
 $.search.title = L('indexSearchButton');
+$.favorites.title = L('indexFavoritesButton');
 
 function search(e) {
 	if ($.searchField.value === "") {
@@ -19,6 +20,17 @@ function goToNext(searchText) {
 		});
 	} else {
 		searchController.getView().open();
+	}
+}
+
+function goToFavorites() {
+	var favoritesController = Alloy.createController('FavoritesController');
+	if (OS_IOS) {
+		favoritesController.getView().open({
+			transition : Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
+		});
+	} else {
+		favoritesController.getView().open();
 	}
 }
 

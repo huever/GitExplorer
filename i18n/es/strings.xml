@@ -2,6 +2,7 @@
 <resources>
 	<string name="indexTitle">Git Explorer</string>
 	<string name="indexSearchButton">Buscar</string>
+	<string name="indexFavoritesButton">Favoritos</string>
 	
 	<string name="backButton">volver</string>
 	

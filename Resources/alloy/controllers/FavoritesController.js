@@ -6,22 +6,17 @@ function Controller() {
     }
     function addTable(JSONdata) {
         var tableData = new Array();
-        var data = JSONdata;
-        for (var i = 0; data.items.length > i; i++) {
+        var data = FavoritesHandler.parseData(JSONdata);
+        for (var i = 0; data.length > i; i++) {
             var row = Ti.UI.createTableViewRow({
-                data: data.items[i].name,
+                data: data[i].name,
                 test: "DetailController",
-                info: data.items[i],
+                info: data[i],
                 layout: "horizontal",
-                favorite: false
+                favorite: true
             });
-            var isFavorite = FavoritesHandler.checkProjectFavorite(data.items[i].id);
             var favoriteButton = Ti.UI.createButton();
-            $.addClass(favoriteButton, "not-favorite");
-            if (isFavorite) {
-                $.addClass(favoriteButton, "favorite");
-                row.favorite = true;
-            }
+            $.addClass(favoriteButton, "favorite");
             row.add(favoriteButton);
             var view = Ti.UI.createView({
                 left: 10,
@@ -33,9 +28,9 @@ function Controller() {
                 font: {
                     fontSize: 22
                 },
-                text: data.items[i].name
+                text: data[i].name
             });
-            var subtitleText = data.items[i].description;
+            var subtitleText = data[i].description;
             "" !== subtitleText && null !== subtitleText && subtitleText.length >= 50 && subtitleText.substring(0, 50);
             var subtitle = Ti.UI.createLabel({
                 left: 5,
@@ -58,14 +53,12 @@ function Controller() {
             data: tableData
         });
         table.addEventListener("click", function(e) {
-            if ("[object TiUIButton]" == e.source.toString()) if (false == e.rowData.favorite) {
-                e.rowData.favorite = true;
-                $.addClass(e.source, "favorite");
-                FavoritesHandler.saveProject(e.rowData.info);
-            } else {
-                e.rowData.favorite = false;
-                $.removeClass(e.source, "favorite");
-                FavoritesHandler.removeProject(e.rowData.info.id);
+            if ("[object TiUIButton]" == e.source.toString()) {
+                if (true == e.rowData.favorite) {
+                    e.rowData.favorite = false;
+                    $.removeClass(e.source, "favorite");
+                    FavoritesHandler.removeProject(e.rowData.info.projectId);
+                }
             } else if (e.rowData.test) {
                 var detailController = Alloy.createController(e.rowData.test, {
                     info: e.rowData.info
@@ -78,7 +71,7 @@ function Controller() {
         $.tableView.add(table);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
-    this.__controllerPath = "SearchController";
+    this.__controllerPath = "FavoritesController";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
     arguments[0] ? arguments[0]["$model"] : null;
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
@@ -125,27 +118,12 @@ function Controller() {
     $.__views.mainContainer.add($.__views.tableView);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var args = arguments[0];
-    $.titleLabel.text = '"' + args.searchText + '"';
-    var url = "https://api.github.com/search/repositories?q=" + args.searchText + "&order=desc";
-    var xhr = Ti.Network.createHTTPClient({
-        onload: function() {
-            var json = JSON.parse(this.responseText);
-            0 == json.items.lenght && alert("No hay resultados");
-            addTable(json);
-        },
-        onerror: function(e) {
-            Ti.API.debug(e.error);
-            alert("error");
-        },
-        timeout: 5e3
-    });
-    xhr.open("GET", url);
-    xhr.send();
     var searchbar = Ti.UI.createSearchBar({
         barColor: "#6f8896",
         showCancel: false
     });
+    var projects = FavoritesHandler.getAll();
+    addTable(projects);
     __defers["$.__views.backButton!click!backToHome"] && $.__views.backButton.addEventListener("click", backToHome);
     _.extend($, exports);
 }

@@ -6,7 +6,15 @@ function Controller() {
         var searchController = Alloy.createController("SearchController", {
             searchText: searchText
         });
-        searchController.getView().open();
+        searchController.getView().open({
+            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
+        });
+    }
+    function goToFavorites() {
+        var favoritesController = Alloy.createController("FavoritesController");
+        favoritesController.getView().open({
+            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
+        });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
@@ -51,19 +59,34 @@ function Controller() {
     search ? $.__views.search.addEventListener("click", search) : __defers["$.__views.search!click!search"] = true;
     $.__views.logo = Ti.UI.createImageView({
         image: "/images/github-logo.png",
-        top: 20,
+        top: 10,
+        height: 260,
         id: "logo"
     });
     $.__views.index.add($.__views.logo);
+    $.__views.favorites = Ti.UI.createButton({
+        width: 300,
+        height: 40,
+        backgroundColor: "#6F8896",
+        borderRadius: 5,
+        borderColor: "#5a6f7a",
+        color: "white",
+        top: 10,
+        id: "favorites"
+    });
+    $.__views.index.add($.__views.favorites);
+    goToFavorites ? $.__views.favorites.addEventListener("click", goToFavorites) : __defers["$.__views.favorites!click!goToFavorites"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     $.title.text = L("indexTitle");
     $.search.title = L("indexSearchButton");
+    $.favorites.title = L("indexFavoritesButton");
     $.logo.addEventListener("click", function() {
-        Ti.Android.hideSoftKeyboard();
+        $.searchField.blur();
     });
     $.index.open();
     __defers["$.__views.search!click!search"] && $.__views.search.addEventListener("click", search);
+    __defers["$.__views.favorites!click!goToFavorites"] && $.__views.favorites.addEventListener("click", goToFavorites);
     _.extend($, exports);
 }
 

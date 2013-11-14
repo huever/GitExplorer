@@ -1,28 +1,3 @@
-var args = arguments[0];
-
-$.titleLabel.text = '"' + args.searchText + '"';
-var url = "https://api.github.com/search/repositories?q=" + args.searchText + "&order=desc";
-
-var xhr = Ti.Network.createHTTPClient({
-	onload : function(e) {
-		var json = JSON.parse(this.responseText);
-		if (json.items.lenght == 0)
-			alert('No hay resultados');
-
-		addTable(json);
-	},
-	onerror : function(e) {
-		// this function is called when an error occurs, including a timeout
-		Ti.API.debug(e.error);
-		alert('error');
-	},
-	timeout : 5000 /* in milliseconds */
-});
-
-xhr.open("GET", url);
-xhr.send();
-// request is actually sent with this statement
-
 function backToHome() {
 	if (OS_IOS) {
 		$.mainContainer.close({
@@ -38,46 +13,45 @@ var searchbar = Ti.UI.createSearchBar({
 	showCancel : false
 });
 
+var projects = FavoritesHandler.getAll();
+
+addTable(projects);
+
 function addTable(JSONdata) {
 	var tableData = new Array();
-	var data = JSONdata;
-	for (var i = 0; i < data.items.length; i++) {
+	var data = FavoritesHandler.parseData(JSONdata);
+
+	for (var i = 0; i < data.length; i++) {
+
 		var row = Ti.UI.createTableViewRow({
-			data : data.items[i].name,
+			data : data[i].name,
 			test : "DetailController",
-			info : data.items[i],
+			info : data[i],
 			layout : "horizontal",
-			favorite : false
+			favorite : true
 		});
-		
-		var isFavorite = FavoritesHandler.checkProjectFavorite(data.items[i].id);
+
 		// Create the favorite Star button
 		var favoriteButton = Ti.UI.createButton();
-		$.addClass(favoriteButton, 'not-favorite');	
-		
-		if(isFavorite) {
-			$.addClass(favoriteButton, 'favorite');
-			row.favorite = true;
-		} 
-		
+		$.addClass(favoriteButton, 'favorite');
+
 		row.add(favoriteButton);
-		
+
 		// View that contains the title and description of the project
 		var view = Ti.UI.createView({
-			left: 10,
+			left : 10,
 			width : Ti.UI.FILL,
 			layout : "vertical"
 		});
-
 		var title = Ti.UI.createLabel({
 			left : 5,
 			font : {
 				fontSize : 22
 			},
-			text : data.items[i].name
+			text : data[i].name
 		});
 
-		var subtitleText = data.items[i].description;
+		var subtitleText = data[i].description;
 
 		if (subtitleText !== "" && subtitleText !== null) {
 			if (subtitleText.length >= 50)
@@ -113,14 +87,10 @@ function addTable(JSONdata) {
 	// create table view event listener
 	table.addEventListener('click', function(e) {
 		if (e.source.toString() == '[object TiUIButton]') {
-			if (e.rowData.favorite == false) {
-				e.rowData.favorite = true;
-				$.addClass(e.source, 'favorite');
-				FavoritesHandler.saveProject(e.rowData.info);
-			} else {
+			if (e.rowData.favorite == true) {
 				e.rowData.favorite = false;
 				$.removeClass(e.source, 'favorite');
-				FavoritesHandler.removeProject(e.rowData.info.id);
+				FavoritesHandler.removeProject(e.rowData.info.projectId);
 			}
 			//alert(e.rowData.info);
 		} else if (e.rowData.test) {

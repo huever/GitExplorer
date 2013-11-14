@@ -2,7 +2,8 @@
 	<Window class="container">
 		<Label class="title" id="title"></Label>
 		<TextField id="searchField" />
-		<Button class="searchButton" id="search" onClick="search"></Button>
+		<Button class="searchButton" id="search" onClick="search"></Button>		
 		<ImageView id="logo">
+		<Button class="searchButton" id="favorites" onClick="goToFavorites"></Button>		
 	</Window>
 </Alloy>
