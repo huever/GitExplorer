@@ -1,6 +1,8 @@
 function Controller() {
     function back() {
-        $.mainContainer.close();
+        $.mainContainer.close({
+            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT
+        });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "DetailController";

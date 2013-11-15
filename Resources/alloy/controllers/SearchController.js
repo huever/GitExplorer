@@ -1,6 +1,8 @@
 function Controller() {
     function backToHome() {
-        $.mainContainer.close();
+        $.mainContainer.close({
+            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT
+        });
     }
     function addTable(JSONdata) {
         var tableData = new Array();
@@ -14,7 +16,9 @@ function Controller() {
                 favorite: false
             });
             var isFavorite = FavoritesHandler.checkProjectFavorite(data.items[i].id);
-            var favoriteButton = Ti.UI.createButton();
+            var favoriteButton = Ti.UI.createButton({
+                favoriteButton: true
+            });
             $.addClass(favoriteButton, "not-favorite");
             if (isFavorite) {
                 $.addClass(favoriteButton, "favorite");
@@ -56,7 +60,7 @@ function Controller() {
             data: tableData
         });
         table.addEventListener("click", function(e) {
-            if ("[object TiUIButton]" == e.source.toString()) if (false == e.rowData.favorite) {
+            if (e.source.favoriteButton) if (false == e.rowData.favorite) {
                 e.rowData.favorite = true;
                 $.addClass(e.source, "favorite");
                 FavoritesHandler.saveProject(e.rowData.info);
@@ -68,7 +72,9 @@ function Controller() {
                 var detailController = Alloy.createController(e.rowData.test, {
                     info: e.rowData.info
                 });
-                detailController.getView().open();
+                detailController.getView().open({
+                    transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
+                });
             }
         });
         $.tableView.add(table);

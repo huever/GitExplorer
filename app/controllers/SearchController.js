@@ -52,7 +52,10 @@ function addTable(JSONdata) {
 
 		var isFavorite = FavoritesHandler.checkProjectFavorite(data.items[i].id);
 		// Create the favorite Star button
-		var favoriteButton = Ti.UI.createButton();
+		var favoriteButton = Ti.UI.createButton({
+			favoriteButton: true	
+		});
+		
 		$.addClass(favoriteButton, 'not-favorite');
 
 		if (isFavorite) {
@@ -111,7 +114,7 @@ function addTable(JSONdata) {
 
 	// create table view event listener
 	table.addEventListener('click', function(e) {
-		if (e.source.toString() == '[object TiUIButton]') {
+		if (e.source.favoriteButton) {
 			if (e.rowData.favorite == false) {
 				e.rowData.favorite = true;
 				$.addClass(e.source, 'favorite');

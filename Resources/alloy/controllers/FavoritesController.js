@@ -1,6 +1,8 @@
 function Controller() {
     function backToHome() {
-        $.mainContainer.close();
+        $.mainContainer.close({
+            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT
+        });
     }
     function addTable(JSONdata) {
         var tableData = new Array();
@@ -13,9 +15,10 @@ function Controller() {
                 favorite: true,
                 height: 80
             });
-            var favoriteButton = Ti.UI.createButton();
+            var favoriteButton = Ti.UI.createButton({
+                favoriteButton: true
+            });
             $.addClass(favoriteButton, "favorite");
-            favoriteButton.setZIndex(1);
             row.add(favoriteButton);
             var view = Ti.UI.createView({
                 left: 40,
@@ -53,17 +56,21 @@ function Controller() {
             data: tableData
         });
         table.addEventListener("click", function(e) {
-            if ("[object TiUIButton]" == e.source.toString()) {
+            if (e.source.favoriteButton) {
                 if (true == e.rowData.favorite) {
                     e.rowData.favorite = false;
                     FavoritesHandler.removeProject(e.rowData.info.projectId);
-                    table.deleteRow(e.index);
+                    table.deleteRow(e.index, {
+                        animationStyle: Titanium.UI.iPhone.RowAnimationStyle.FADE
+                    });
                 }
             } else if (e.rowData.test) {
                 var detailController = Alloy.createController(e.rowData.test, {
                     info: e.rowData.info
                 });
-                detailController.getView().open();
+                detailController.getView().open({
+                    transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
+                });
             }
         });
         $.tableView.add(table);
