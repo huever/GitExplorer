@@ -37,8 +37,6 @@ function goToFavorites() {
 $.logo.addEventListener("click", function() {
 	if (OS_IOS)
 		$.searchField.blur();
-	else
-		Ti.Android.hideSoftKeyboard();
 });
 
 $.index.open();

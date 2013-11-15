@@ -7,7 +7,7 @@ var xhr = Ti.Network.createHTTPClient({
 	onload : function(e) {
 		var json = JSON.parse(this.responseText);
 		if (json.items.lenght == 0)
-			alert('No hay resultados');
+			alert(L('noResults'));
 
 		addTable(json);
 	},
@@ -46,33 +46,34 @@ function addTable(JSONdata) {
 			data : data.items[i].name,
 			test : "DetailController",
 			info : data.items[i],
-			layout : "horizontal",
+			height : 80,
 			favorite : false
 		});
-		
+
 		var isFavorite = FavoritesHandler.checkProjectFavorite(data.items[i].id);
 		// Create the favorite Star button
 		var favoriteButton = Ti.UI.createButton();
-		$.addClass(favoriteButton, 'not-favorite');	
-		
-		if(isFavorite) {
+		$.addClass(favoriteButton, 'not-favorite');
+
+		if (isFavorite) {
 			$.addClass(favoriteButton, 'favorite');
 			row.favorite = true;
-		} 
-		
+		}
+
 		row.add(favoriteButton);
-		
+
 		// View that contains the title and description of the project
 		var view = Ti.UI.createView({
-			left: 10,
-			width : Ti.UI.FILL,
+			left : 40,
+			height : 80,
+			width : Ti.UI.SIZE,
 			layout : "vertical"
 		});
 
 		var title = Ti.UI.createLabel({
 			left : 5,
 			font : {
-				fontSize : 22
+				fontSize : 16
 			},
 			text : data.items[i].name
 		});
@@ -87,7 +88,7 @@ function addTable(JSONdata) {
 		var subtitle = Ti.UI.createLabel({
 			left : 5,
 			font : {
-				fontSize : 14
+				fontSize : 12
 			},
 			text : subtitleText
 		});
@@ -97,8 +98,6 @@ function addTable(JSONdata) {
 		row.add(view);
 
 		row.hasDetail = true;
-
-		row.setHeight(100);
 
 		tableData.push(row);
 	};
@@ -122,7 +121,6 @@ function addTable(JSONdata) {
 				$.removeClass(e.source, 'favorite');
 				FavoritesHandler.removeProject(e.rowData.info.id);
 			}
-			//alert(e.rowData.info);
 		} else if (e.rowData.test) {
 			var detailController = Alloy.createController(e.rowData.test, {
 				info : e.rowData.info

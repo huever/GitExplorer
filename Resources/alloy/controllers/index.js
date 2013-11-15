@@ -6,15 +6,11 @@ function Controller() {
         var searchController = Alloy.createController("SearchController", {
             searchText: searchText
         });
-        searchController.getView().open({
-            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
-        });
+        searchController.getView().open();
     }
     function goToFavorites() {
         var favoritesController = Alloy.createController("FavoritesController");
-        favoritesController.getView().open({
-            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
-        });
+        favoritesController.getView().open();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
@@ -81,9 +77,7 @@ function Controller() {
     $.title.text = L("indexTitle");
     $.search.title = L("indexSearchButton");
     $.favorites.title = L("indexFavoritesButton");
-    $.logo.addEventListener("click", function() {
-        $.searchField.blur();
-    });
+    $.logo.addEventListener("click", function() {});
     $.index.open();
     __defers["$.__views.search!click!search"] && $.__views.search.addEventListener("click", search);
     __defers["$.__views.favorites!click!goToFavorites"] && $.__views.favorites.addEventListener("click", goToFavorites);

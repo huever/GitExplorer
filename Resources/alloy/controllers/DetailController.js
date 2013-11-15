@@ -1,8 +1,6 @@
 function Controller() {
     function back() {
-        $.mainContainer.close({
-            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT
-        });
+        $.mainContainer.close();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "DetailController";
@@ -15,6 +13,7 @@ function Controller() {
     $.__views.mainContainer = Ti.UI.createWindow({
         backgroundColor: "white",
         layout: "vertical",
+        backgroundImage: "/images/detail.png",
         id: "mainContainer"
     });
     $.__views.mainContainer && $.addTopLevelView($.__views.mainContainer);

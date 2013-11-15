@@ -1,8 +1,6 @@
 function Controller() {
     function backToHome() {
-        $.mainContainer.close({
-            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT
-        });
+        $.mainContainer.close();
     }
     function addTable(JSONdata) {
         var tableData = new Array();
@@ -12,21 +10,23 @@ function Controller() {
                 data: data[i].name,
                 test: "DetailController",
                 info: data[i],
-                layout: "horizontal",
-                favorite: true
+                favorite: true,
+                height: 80
             });
             var favoriteButton = Ti.UI.createButton();
             $.addClass(favoriteButton, "favorite");
+            favoriteButton.setZIndex(1);
             row.add(favoriteButton);
             var view = Ti.UI.createView({
-                left: 10,
-                width: Ti.UI.FILL,
+                left: 40,
+                height: 80,
+                width: Ti.UI.SIZE,
                 layout: "vertical"
             });
             var title = Ti.UI.createLabel({
                 left: 5,
                 font: {
-                    fontSize: 22
+                    fontSize: 16
                 },
                 text: data[i].name
             });
@@ -35,7 +35,7 @@ function Controller() {
             var subtitle = Ti.UI.createLabel({
                 left: 5,
                 font: {
-                    fontSize: 14
+                    fontSize: 12
                 },
                 text: subtitleText
             });
@@ -56,16 +56,14 @@ function Controller() {
             if ("[object TiUIButton]" == e.source.toString()) {
                 if (true == e.rowData.favorite) {
                     e.rowData.favorite = false;
-                    $.removeClass(e.source, "favorite");
                     FavoritesHandler.removeProject(e.rowData.info.projectId);
+                    table.deleteRow(e.index);
                 }
             } else if (e.rowData.test) {
                 var detailController = Alloy.createController(e.rowData.test, {
                     info: e.rowData.info
                 });
-                detailController.getView().open({
-                    transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
-                });
+                detailController.getView().open();
             }
         });
         $.tableView.add(table);
@@ -118,6 +116,7 @@ function Controller() {
     $.__views.mainContainer.add($.__views.tableView);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    $.titleLabel.text = L("favoritesTitle");
     var searchbar = Ti.UI.createSearchBar({
         barColor: "#6f8896",
         showCancel: false

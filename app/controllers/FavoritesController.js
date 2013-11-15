@@ -1,3 +1,5 @@
+$.titleLabel.text = L('favoritesTitle');
+
 function backToHome() {
 	if (OS_IOS) {
 		$.mainContainer.close({
@@ -27,26 +29,27 @@ function addTable(JSONdata) {
 			data : data[i].name,
 			test : "DetailController",
 			info : data[i],
-			layout : "horizontal",
-			favorite : true
+			favorite : true,
+			height : 80
 		});
 
 		// Create the favorite Star button
 		var favoriteButton = Ti.UI.createButton();
 		$.addClass(favoriteButton, 'favorite');
-
 		row.add(favoriteButton);
 
 		// View that contains the title and description of the project
 		var view = Ti.UI.createView({
-			left : 10,
-			width : Ti.UI.FILL,
+			left : 40,
+			height : 80,
+			width : Ti.UI.SIZE,
 			layout : "vertical"
 		});
+
 		var title = Ti.UI.createLabel({
 			left : 5,
 			font : {
-				fontSize : 22
+				fontSize : 16
 			},
 			text : data[i].name
 		});
@@ -61,7 +64,7 @@ function addTable(JSONdata) {
 		var subtitle = Ti.UI.createLabel({
 			left : 5,
 			font : {
-				fontSize : 14
+				fontSize : 12
 			},
 			text : subtitleText
 		});
@@ -89,10 +92,14 @@ function addTable(JSONdata) {
 		if (e.source.toString() == '[object TiUIButton]') {
 			if (e.rowData.favorite == true) {
 				e.rowData.favorite = false;
-				$.removeClass(e.source, 'favorite');
 				FavoritesHandler.removeProject(e.rowData.info.projectId);
+				if (OS_IOS)
+					table.deleteRow(e.index, {
+						animationStyle : Titanium.UI.iPhone.RowAnimationStyle.FADE
+					});
+				else
+					table.deleteRow(e.index);
 			}
-			//alert(e.rowData.info);
 		} else if (e.rowData.test) {
 			var detailController = Alloy.createController(e.rowData.test, {
 				info : e.rowData.info

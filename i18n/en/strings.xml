@@ -8,4 +8,8 @@
 	
 	<string name="detailDescription">Description</string>
 	<string name="detailURL">Project URL</string>
+	
+	<string name="noResults">No Results</string>
+	
+	<string name="favoritesTitle">Favorites</string>
 </resources>

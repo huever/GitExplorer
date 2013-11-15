@@ -21,6 +21,7 @@
 	backgroundImage: "/images/favorite0.png",
 	left : 5,
 	top : 25,
+	bottom : 25,
 	height : 30,
 	width : 30
 }
@@ -28,6 +29,7 @@
 	backgroundImage: "/images/favorite1.png",
 	left : 5,
 	top : 25,
+	bottom : 25,
 	height : 30,
 	width : 30
 }

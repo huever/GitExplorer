@@ -1,3 +1,6 @@
+".container" : {
+	backgroundImage: "/images/detail.png"
+}
 "#backButton" : {
 	width: Ti.UI.SIZE,
 	top: 15,
