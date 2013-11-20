@@ -12,14 +12,6 @@ exports.definition = {
             type: "sql",
             collection_name: "project"
         }
-    },
-    extendModel: function(Model) {
-        _.extend(Model.prototype, {});
-        return Model;
-    },
-    extendCollection: function(Collection) {
-        _.extend(Collection.prototype, {});
-        return Collection;
     }
 };
 

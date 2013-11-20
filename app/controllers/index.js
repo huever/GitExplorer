@@ -10,6 +10,27 @@ function search(e) {
 	}
 }
 
+function searchList(e) {
+	if ($.searchField.value === "") {
+		alert("Complete");
+	} else {
+		goToList($.searchField.value);
+	}
+}
+
+function login(e) {
+
+	var loginController = Alloy.createController('LoginController');
+	if (OS_IOS) {
+		loginController.getView().open({
+			modal: true,
+			modalTransitionStyle : Ti.UI.iPhone.MODAL_TRANSITION_STYLE_COVER_VERTICAL,
+		});
+	} else {
+		loginController.getView().open();
+	}
+}
+
 function goToNext(searchText) {
 	var searchController = Alloy.createController('SearchController', {
 		searchText : searchText
@@ -20,6 +41,19 @@ function goToNext(searchText) {
 		});
 	} else {
 		searchController.getView().open();
+	}
+}
+
+function goToList(searchText) {
+	var searchListController = Alloy.createController('SearchListController', {
+		searchText : searchText
+	});
+	if (OS_IOS) {
+		searchListController.getView().open({
+			transition : Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
+		});
+	} else {
+		searchListController.getView().open();
 	}
 }
 

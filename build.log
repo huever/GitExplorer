@@ -16,7 +16,7 @@ Logfile initialized
 [DEBUG] Waiting for device to be ready ...
 [TRACE] adb devices returned 1 devices/emulators
 [DEBUG] Device connected... (waited 0 seconds)
-[DEBUG] waited 0.027487 seconds on emulator to get ready
+[DEBUG] waited 0.019948 seconds on emulator to get ready
 [DEBUG] com.git installed? True
 [INFO] Fastdev server running, deploying in Fastdev mode
 [INFO] Copying CommonJS modules...
@@ -27,14 +27,20 @@ Logfile initialized
 [TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/controllers/DetailController.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/controllers/DetailController.js
 [TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/controllers/FavoritesController.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/controllers/FavoritesController.js
 [TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/controllers/index.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/controllers/index.js
+[TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/controllers/LoginController.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/controllers/LoginController.js
 [TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/controllers/SearchController.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/controllers/SearchController.js
+[TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/controllers/SearchListController.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/controllers/SearchListController.js
 [TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/models/Project.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/models/Project.js
+[TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/models/ProjectSearch.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/models/ProjectSearch.js
 [TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/styles/DetailController.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/styles/DetailController.js
 [TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/styles/FavoritesController.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/styles/FavoritesController.js
 [TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/styles/index.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/styles/index.js
+[TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/styles/LoginController.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/styles/LoginController.js
 [TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/styles/SearchController.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/styles/SearchController.js
+[TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/styles/SearchListController.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/styles/SearchListController.js
 [TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/sync/localStorage.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/sync/localStorage.js
 [TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/sync/properties.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/sync/properties.js
+[TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/sync/restapi.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/sync/restapi.js
 [TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/sync/sql.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/sync/sql.js
 [TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/sync/util.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/sync/util.js
 [TRACE] COPYING MODIFIED FILE: /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/Resources/alloy/underscore.js => /Users/gl/Documents/Titanium_Studio_Workspace/GitExplorer/build/android/bin/assets/Resources/alloy/underscore.js

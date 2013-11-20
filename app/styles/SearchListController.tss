@@ -10,6 +10,7 @@
 	textAlign: "center",
 	top: 18
 }
+
 "#header": {
 	backgroundColor: "F1F1F1"
 }
@@ -32,4 +33,29 @@
 	bottom : 25,
 	height : 30,
 	width : 30
+}
+".projectRow": {
+	height : 80,
+	hasDetail : true
+}
+
+".descriptionView": {
+	top : 5,
+	left : 40,
+	height : 80,
+	width : Ti.UI.FILL,
+	layout : "vertical"
+}
+".nameLabel": {
+	left : 5,
+	font : {
+		fontSize : 16
+	}
+}
+
+".descriptionLabel": {
+	left : 5,
+	font : {
+		fontSize : 12
+	}
 }

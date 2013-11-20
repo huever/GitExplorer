@@ -1,8 +1,43 @@
 "Window": {
 	backgroundColor:"white",
 	layout: "vertical"
-}
+},
 
 ".title": {
 	top: 20
+},
+
+"TextField": {
+	borderRadius: 5,
+	borderColor: "#5a6f7a",
+	color:"#336699",
+	backgroundColor: "#ccdbe2",
+	height: 40,
+	width: 300,
+	top: 10,
+	borderWidth: 2
+}
+
+".actionButton":{
+	width: 300,
+	height: 40,
+	backgroundColor: "#6F8896",
+	borderRadius: 5,
+	borderWidth: 3,
+	borderColor: "#5a6f7a",
+	color: "white",
+	top: 10
+}
+
+".actionButtonSmall":{
+	width: 140,
+	height: 40,
+	backgroundColor: "#6F8896",
+	borderRadius: 5,
+	borderWidth: 3,
+	borderColor: "#5a6f7a",
+	color: "white",
+	top: 10,
+	right: 8,
+	left: 8
 }

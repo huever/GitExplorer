@@ -1,0 +1,19 @@
+<Alloy>
+	<Collection src="projectSearch" />
+	<Window class="container" id="mainContainer">
+		<View id="header" height="Ti.UI.SIZE">
+			<Button id="backButton" onClick="backToHome"></Button>
+			<Label id="titleLabel" class="title"></Label>
+		</View>
+		<View id="border"></View>
+		<TableView id="projectSearchTable" dataCollection="projectSearch">
+			<TableViewRow class="projectRow" info="{info}" test="DetailController" favorite="{favorite}" data="{name}">
+				<Button class="not-favorite" favoriteButton="true"></Button>
+				<View class="descriptionView">
+					<Label text="{name}" class="nameLabel"></Label>
+					<Label text="{description}" class="descriptionLabel"></Label>
+				</View>
+			</TableViewRow>
+		</TableView>
+	</Window>
+</Alloy>

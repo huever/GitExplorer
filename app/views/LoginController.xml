@@ -1,0 +1,10 @@
+<Alloy>
+	<Window class="container">
+		<Label class="title" id="user">Usuario</Label>
+		<TextField id="userField" />
+		<Label class="title" id="password">Contraseña</Label>
+		<TextField passwordMask="true" id="passwordField" />
+		<Button class="actionButton" onClick="close">Close</Button>
+		<Button class="actionButton" onClick="login">Login</Button>
+	</Window>
+</Alloy>

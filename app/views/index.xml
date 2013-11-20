@@ -2,8 +2,14 @@
 	<Window class="container">
 		<Label class="title" id="title"></Label>
 		<TextField id="searchField" />
-		<Button class="searchButton" id="search" onClick="search"></Button>		
+		<View id="actionButtonsContainer">
+			<View id="actionButtons">
+				<Button class="actionButtonSmall" id="search" onClick="search"></Button>		
+				<Button class="actionButtonSmall" id="searchList" onClick="searchList">Search List</Button>	
+			</View>	
+		</View>		
 		<ImageView id="logo">
-		<Button class="searchButton" id="favorites" onClick="goToFavorites"></Button>		
+		<Button class="actionButton" id="favorites" onClick="goToFavorites"></Button>	
+		<Button class="actionButton" id="login" onClick="login">Login</Button>		
 	</Window>
 </Alloy>

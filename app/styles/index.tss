@@ -1,25 +1,22 @@
 "Window": {
-	layout: "vertical"
+	layout: "vertical",
+	backgroundImage : "/images/cloud.png"
 },
-"TextField": {
-	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-	color:"#336699",
-	backgroundColor: "#ccdbe2",
-	height: 40,
-	width: 300,
-	top: 10
-},
-".searchButton":{
-	width: 300,
-	height: 40,
-	backgroundColor: "#6F8896",
-	borderRadius: 5,
-	borderColor: "#5a6f7a",
-	color: "white",
-	top: 10
-},
+
+
 "#logo": {
 	image: "/images/github-logo.png",
 	top: 10,
-	height: 260
+	height: 200
+}
+
+"#actionButtons": {
+	height: Ti.UI.SIZE,
+	layout: "horizontal",
+	width: Ti.UI.SIZE,
+	textAlign: "center"
+}
+
+"#actionButtonsContainer": {
+	height: Ti.UI.SIZE
 }

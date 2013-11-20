@@ -1,8 +1,6 @@
 function Controller() {
     function backToHome() {
-        $.mainContainer.close({
-            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT
-        });
+        $.mainContainer.close();
     }
     function addTable(JSONdata) {
         var tableData = new Array();
@@ -60,17 +58,13 @@ function Controller() {
                 if (true == e.rowData.favorite) {
                     e.rowData.favorite = false;
                     FavoritesHandler.removeProject(e.rowData.info.projectId);
-                    table.deleteRow(e.index, {
-                        animationStyle: Titanium.UI.iPhone.RowAnimationStyle.FADE
-                    });
+                    table.deleteRow(e.index);
                 }
             } else if (e.rowData.test) {
                 var detailController = Alloy.createController(e.rowData.test, {
                     info: e.rowData.info
                 });
-                detailController.getView().open({
-                    transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
-                });
+                detailController.getView().open();
             }
         });
         $.tableView.add(table);
