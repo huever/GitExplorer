@@ -1,6 +1,6 @@
 "Window": {
 	layout: "vertical",
-	backgroundImage : "/images/cloud.png"
+	backgroundImage : "/images/Background.png"
 },
 
 

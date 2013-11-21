@@ -54,7 +54,9 @@ function Controller() {
         $.__views.projectSearchTable.setData(rows);
     }
     function backToHome() {
-        $.mainContainer.close();
+        $.mainContainer.close({
+            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT
+        });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "SearchListController";
@@ -116,6 +118,31 @@ function Controller() {
         urlparams: {
             q: args.searchText,
             order: "desc"
+        }
+    });
+    var searchbar = Ti.UI.createSearchBar({
+        barColor: "#6f8896",
+        showCancel: false
+    });
+    $.projectSearchTable.setFilterAttribute("data");
+    $.projectSearchTable.setSearch(searchbar);
+    $.projectSearchTable.addEventListener("click", function(e) {
+        if (e.source.favoriteButton) if (false == e.rowData.favorite || void 0 == e.rowData.favorite) {
+            e.rowData.favorite = true;
+            $.addClass(e.source, "favorite");
+            FavoritesHandler.saveProject(e.rowData.info);
+        } else {
+            e.rowData.favorite = false;
+            $.removeClass(e.source, "favorite");
+            $.addClass(e.source, "not-favorite");
+            FavoritesHandler.removeProject(e.rowData.info.id);
+        } else if (e.rowData.test) {
+            var detailController = Alloy.createController(e.rowData.test, {
+                info: e.rowData.info
+            });
+            detailController.getView().open({
+                transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
+            });
         }
     });
     __defers["$.__views.backButton!click!backToHome"] && $.__views.backButton.addEventListener("click", backToHome);

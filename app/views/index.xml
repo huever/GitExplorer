@@ -10,6 +10,5 @@
 		</View>		
 		<ImageView id="logo">
 		<Button class="actionButton" id="favorites" onClick="goToFavorites"></Button>	
-		<Button class="actionButton" id="login" onClick="login">Login</Button>		
 	</Window>
 </Alloy>

@@ -1,6 +1,8 @@
 function Controller() {
     function backToHome() {
-        $.mainContainer.close();
+        $.mainContainer.close({
+            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT
+        });
     }
     function addTable(JSONdata) {
         var tableData = new Array();
@@ -70,7 +72,9 @@ function Controller() {
                 var detailController = Alloy.createController(e.rowData.test, {
                     info: e.rowData.info
                 });
-                detailController.getView().open();
+                detailController.getView().open({
+                    transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
+                });
             }
         });
         $.tableView.add(table);

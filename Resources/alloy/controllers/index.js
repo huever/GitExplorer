@@ -5,25 +5,27 @@ function Controller() {
     function searchList() {
         "" === $.searchField.value ? alert("Complete") : goToList($.searchField.value);
     }
-    function login() {
-        var loginController = Alloy.createController("LoginController");
-        loginController.getView().open();
-    }
     function goToNext(searchText) {
         var searchController = Alloy.createController("SearchController", {
             searchText: searchText
         });
-        searchController.getView().open();
+        searchController.getView().open({
+            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
+        });
     }
     function goToList(searchText) {
         var searchListController = Alloy.createController("SearchListController", {
             searchText: searchText
         });
-        searchListController.getView().open();
+        searchListController.getView().open({
+            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
+        });
     }
     function goToFavorites() {
         var favoritesController = Alloy.createController("FavoritesController");
-        favoritesController.getView().open();
+        favoritesController.getView().open({
+            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
+        });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
@@ -36,7 +38,7 @@ function Controller() {
     $.__views.index = Ti.UI.createWindow({
         backgroundColor: "white",
         layout: "vertical",
-        backgroundImage: "/images/cloud.png",
+        backgroundImage: "/images/Background.png",
         id: "index"
     });
     $.__views.index && $.addTopLevelView($.__views.index);
@@ -121,31 +123,18 @@ function Controller() {
     });
     $.__views.index.add($.__views.favorites);
     goToFavorites ? $.__views.favorites.addEventListener("click", goToFavorites) : __defers["$.__views.favorites!click!goToFavorites"] = true;
-    $.__views.login = Ti.UI.createButton({
-        width: 300,
-        height: 40,
-        backgroundColor: "#6F8896",
-        borderRadius: 5,
-        borderWidth: 3,
-        borderColor: "#5a6f7a",
-        color: "white",
-        top: 10,
-        title: "Login",
-        id: "login"
-    });
-    $.__views.index.add($.__views.login);
-    login ? $.__views.login.addEventListener("click", login) : __defers["$.__views.login!click!login"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     $.title.text = L("indexTitle");
     $.search.title = L("indexSearchButton");
     $.favorites.title = L("indexFavoritesButton");
-    $.logo.addEventListener("click", function() {});
+    $.logo.addEventListener("click", function() {
+        $.searchField.blur();
+    });
     $.index.open();
     __defers["$.__views.search!click!search"] && $.__views.search.addEventListener("click", search);
     __defers["$.__views.searchList!click!searchList"] && $.__views.searchList.addEventListener("click", searchList);
     __defers["$.__views.favorites!click!goToFavorites"] && $.__views.favorites.addEventListener("click", goToFavorites);
-    __defers["$.__views.login!click!login"] && $.__views.login.addEventListener("click", login);
     _.extend($, exports);
 }
 
