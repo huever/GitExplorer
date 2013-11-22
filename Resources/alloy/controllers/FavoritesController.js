@@ -1,8 +1,6 @@
 function Controller() {
     function backToHome() {
-        $.mainContainer.close({
-            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT
-        });
+        $.mainContainer.close();
     }
     function addTable(JSONdata) {
         var tableData = new Array();
@@ -60,17 +58,13 @@ function Controller() {
                 if (true == e.rowData.favorite) {
                     e.rowData.favorite = false;
                     FavoritesHandler.removeProject(e.rowData.info.projectId);
-                    table.deleteRow(e.index, {
-                        animationStyle: Titanium.UI.iPhone.RowAnimationStyle.FADE
-                    });
+                    table.deleteRow(e.index);
                 }
             } else if (e.rowData.test) {
                 var detailController = Alloy.createController(e.rowData.test, {
                     info: e.rowData.info
                 });
-                detailController.getView().open({
-                    transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
-                });
+                detailController.getView().open();
             }
         });
         $.tableView.add(table);
@@ -86,6 +80,7 @@ function Controller() {
     $.__views.mainContainer = Ti.UI.createWindow({
         backgroundColor: "white",
         layout: "vertical",
+        navBarHidden: true,
         id: "mainContainer"
     });
     $.__views.mainContainer && $.addTopLevelView($.__views.mainContainer);
@@ -106,6 +101,7 @@ function Controller() {
     backToHome ? $.__views.backButton.addEventListener("click", backToHome) : __defers["$.__views.backButton!click!backToHome"] = true;
     $.__views.titleLabel = Ti.UI.createLabel({
         top: 18,
+        color: "#070707",
         width: Ti.UI.FILL,
         textAlign: "center",
         id: "titleLabel"
@@ -130,6 +126,10 @@ function Controller() {
     });
     var projects = FavoritesHandler.getAll();
     addTable(projects);
+    $.mainContainer.addEventListener("android:back", function() {
+        backToHome();
+    });
+    $.backButton.visible = false;
     __defers["$.__views.backButton!click!backToHome"] && $.__views.backButton.addEventListener("click", backToHome);
     _.extend($, exports);
 }

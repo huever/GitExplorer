@@ -1,5 +1,5 @@
 ".container" : {
-	backgroundImage: "/images/detail.png"
+	backgroundImage: "/images/Background.png"
 }
 "#backButton" : {
 	width: Ti.UI.SIZE,
@@ -25,12 +25,18 @@
 	height: 100,
 	top: 15
 }
+"#owner": {
+	font: {fontSize : 22},
+	color: "#070707"
+}
 ".description" : {
 	left: 10,
 	font: {fontSize : 14},
+	color: "#727272"
 }
 ".labelTitle" : {
 	left: 5,
 	font: {fontSize : 18},
-	top: 10
+	top: 10,
+	color: "#070707"
 }

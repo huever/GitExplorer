@@ -1,8 +1,8 @@
 "Window": {
 	layout: "vertical",
-	backgroundImage : "/images/Background.png"
+	backgroundImage : "/images/Background.png",
+	height: Ti.UI.FILL
 },
-
 
 "#logo": {
 	image: "/images/github-logo.png",
@@ -19,4 +19,8 @@
 
 "#actionButtonsContainer": {
 	height: Ti.UI.SIZE
+}
+
+"#favorites": {
+	bottom: 5
 }

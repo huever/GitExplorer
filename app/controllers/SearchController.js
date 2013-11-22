@@ -53,9 +53,9 @@ function addTable(JSONdata) {
 		var isFavorite = FavoritesHandler.checkProjectFavorite(data.items[i].id);
 		// Create the favorite Star button
 		var favoriteButton = Ti.UI.createButton({
-			favoriteButton: true	
+			favoriteButton : true
 		});
-		
+
 		$.addClass(favoriteButton, 'not-favorite');
 
 		if (isFavorite) {
@@ -78,7 +78,8 @@ function addTable(JSONdata) {
 			font : {
 				fontSize : 16
 			},
-			text : data.items[i].name
+			text : data.items[i].name,
+			color: "#070707"
 		});
 
 		var subtitleText = data.items[i].description;
@@ -93,7 +94,8 @@ function addTable(JSONdata) {
 			font : {
 				fontSize : 12
 			},
-			text : subtitleText
+			text : subtitleText,
+			color: "#727272"
 		});
 
 		view.add(title);
@@ -141,3 +143,12 @@ function addTable(JSONdata) {
 	// now assign that array to the table's data property to add those objects as rows
 	$.tableView.add(table);
 }
+
+$.mainContainer.addEventListener('android:back', function() {
+	backToHome();
+});
+
+if (OS_ANDROID) {
+	$.backButton.visible = false;
+}
+

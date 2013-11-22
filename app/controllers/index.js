@@ -19,11 +19,10 @@ function searchList(e) {
 }
 
 function login(e) {
-
 	var loginController = Alloy.createController('LoginController');
 	if (OS_IOS) {
 		loginController.getView().open({
-			modal: true,
+			modal : true,
 			modalTransitionStyle : Ti.UI.iPhone.MODAL_TRANSITION_STYLE_COVER_VERTICAL,
 		});
 	} else {
@@ -73,4 +72,14 @@ $.logo.addEventListener("click", function() {
 		$.searchField.blur();
 });
 
-$.index.open();
+Ti.Gesture.addEventListener('orientationchange', function(e) {
+	if (Ti.Gesture.orientation == Ti.UI.LANDSCAPE_LEFT || Ti.Gesture.orientation == Ti.UI.LANDSCAPE_RIGHT) {
+		$.logo.height = 80;
+		$.mainContainer.backgroundImage = "/images/Background-land.png";
+	} else {
+		$.logo.height = 200;
+		$.mainContainer.backgroundImage = "/images/Background.png";
+	}
+});
+
+$.mainContainer.open();

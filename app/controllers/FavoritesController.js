@@ -119,3 +119,11 @@ function addTable(JSONdata) {
 	// now assign that array to the table's data property to add those objects as rows
 	$.tableView.add(table);
 }
+
+$.mainContainer.addEventListener('android:back', function() {
+	backToHome();
+}); 
+
+if (OS_ANDROID) {
+	$.backButton.visible = false;
+}

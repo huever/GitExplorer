@@ -53,3 +53,11 @@ $.projectSearchTable.addEventListener('click', function(e) {
 		}
 	}
 });
+
+$.mainContainer.addEventListener('android:back', function() {
+	backToHome();
+}); 
+
+if (OS_ANDROID) {
+	$.backButton.visible = false;
+}

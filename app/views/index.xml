@@ -1,5 +1,5 @@
 <Alloy>
-	<Window class="container">
+	<Window class="container" id="mainContainer">
 		<Label class="title" id="title"></Label>
 		<TextField id="searchField" />
 		<View id="actionButtonsContainer">
@@ -9,6 +9,6 @@
 			</View>	
 		</View>		
 		<ImageView id="logo">
-		<Button class="actionButton" id="favorites" onClick="goToFavorites"></Button>	
+		<Button class="actionButton" id="favorites" onClick="goToFavorites"></Button>		
 	</Window>
 </Alloy>

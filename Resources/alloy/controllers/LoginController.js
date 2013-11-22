@@ -36,12 +36,14 @@ function Controller() {
     $.__views.LoginController = Ti.UI.createWindow({
         backgroundColor: "white",
         layout: "vertical",
+        navBarHidden: true,
         backgroundImage: "/images/cloud2.png",
         id: "LoginController"
     });
     $.__views.LoginController && $.addTopLevelView($.__views.LoginController);
     $.__views.user = Ti.UI.createLabel({
         top: 20,
+        color: "#070707",
         text: "Usuario",
         id: "user"
     });
@@ -60,6 +62,7 @@ function Controller() {
     $.__views.LoginController.add($.__views.userField);
     $.__views.password = Ti.UI.createLabel({
         top: 20,
+        color: "#070707",
         text: "Contraseña",
         id: "password"
     });
@@ -85,7 +88,6 @@ function Controller() {
         borderWidth: 3,
         borderColor: "#5a6f7a",
         color: "white",
-        top: 10,
         title: "Close",
         id: "__alloyId0"
     });
@@ -99,7 +101,6 @@ function Controller() {
         borderWidth: 3,
         borderColor: "#5a6f7a",
         color: "white",
-        top: 10,
         title: "Login",
         id: "__alloyId1"
     });

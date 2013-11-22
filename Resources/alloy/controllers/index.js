@@ -9,23 +9,17 @@ function Controller() {
         var searchController = Alloy.createController("SearchController", {
             searchText: searchText
         });
-        searchController.getView().open({
-            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
-        });
+        searchController.getView().open();
     }
     function goToList(searchText) {
         var searchListController = Alloy.createController("SearchListController", {
             searchText: searchText
         });
-        searchListController.getView().open({
-            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
-        });
+        searchListController.getView().open();
     }
     function goToFavorites() {
         var favoritesController = Alloy.createController("FavoritesController");
-        favoritesController.getView().open({
-            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
-        });
+        favoritesController.getView().open();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
@@ -35,18 +29,21 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.index = Ti.UI.createWindow({
+    $.__views.mainContainer = Ti.UI.createWindow({
         backgroundColor: "white",
         layout: "vertical",
+        navBarHidden: true,
         backgroundImage: "/images/Background.png",
-        id: "index"
+        height: Ti.UI.FILL,
+        id: "mainContainer"
     });
-    $.__views.index && $.addTopLevelView($.__views.index);
+    $.__views.mainContainer && $.addTopLevelView($.__views.mainContainer);
     $.__views.title = Ti.UI.createLabel({
         top: 20,
+        color: "#070707",
         id: "title"
     });
-    $.__views.index.add($.__views.title);
+    $.__views.mainContainer.add($.__views.title);
     $.__views.searchField = Ti.UI.createTextField({
         borderRadius: 5,
         borderColor: "#5a6f7a",
@@ -58,12 +55,12 @@ function Controller() {
         borderWidth: 2,
         id: "searchField"
     });
-    $.__views.index.add($.__views.searchField);
+    $.__views.mainContainer.add($.__views.searchField);
     $.__views.actionButtonsContainer = Ti.UI.createView({
         height: Ti.UI.SIZE,
         id: "actionButtonsContainer"
     });
-    $.__views.index.add($.__views.actionButtonsContainer);
+    $.__views.mainContainer.add($.__views.actionButtonsContainer);
     $.__views.actionButtons = Ti.UI.createView({
         height: Ti.UI.SIZE,
         layout: "horizontal",
@@ -109,7 +106,7 @@ function Controller() {
         height: 200,
         id: "logo"
     });
-    $.__views.index.add($.__views.logo);
+    $.__views.mainContainer.add($.__views.logo);
     $.__views.favorites = Ti.UI.createButton({
         width: 300,
         height: 40,
@@ -118,20 +115,27 @@ function Controller() {
         borderWidth: 3,
         borderColor: "#5a6f7a",
         color: "white",
-        top: 10,
+        bottom: 5,
         id: "favorites"
     });
-    $.__views.index.add($.__views.favorites);
+    $.__views.mainContainer.add($.__views.favorites);
     goToFavorites ? $.__views.favorites.addEventListener("click", goToFavorites) : __defers["$.__views.favorites!click!goToFavorites"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     $.title.text = L("indexTitle");
     $.search.title = L("indexSearchButton");
     $.favorites.title = L("indexFavoritesButton");
-    $.logo.addEventListener("click", function() {
-        $.searchField.blur();
+    $.logo.addEventListener("click", function() {});
+    Ti.Gesture.addEventListener("orientationchange", function() {
+        if (Ti.Gesture.orientation == Ti.UI.LANDSCAPE_LEFT || Ti.Gesture.orientation == Ti.UI.LANDSCAPE_RIGHT) {
+            $.logo.height = 80;
+            $.mainContainer.backgroundImage = "/images/Background-land.png";
+        } else {
+            $.logo.height = 200;
+            $.mainContainer.backgroundImage = "/images/Background.png";
+        }
     });
-    $.index.open();
+    $.mainContainer.open();
     __defers["$.__views.search!click!search"] && $.__views.search.addEventListener("click", search);
     __defers["$.__views.searchList!click!searchList"] && $.__views.searchList.addEventListener("click", searchList);
     __defers["$.__views.favorites!click!goToFavorites"] && $.__views.favorites.addEventListener("click", goToFavorites);

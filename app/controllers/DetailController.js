@@ -17,3 +17,19 @@ function back() {
 		$.mainContainer.close();
 	}
 }
+
+$.mainContainer.addEventListener('android:back', function() {
+	back();
+}); 
+
+if (OS_ANDROID) {
+	$.backButton.visible = false;
+}
+
+Ti.Gesture.addEventListener('orientationchange', function(e) {
+	if (Ti.Gesture.orientation == Ti.UI.LANDSCAPE_LEFT || Ti.Gesture.orientation == Ti.UI.LANDSCAPE_RIGHT) {
+		$.mainContainer.backgroundImage = "/images/Background-land.png";
+	} else {
+		$.mainContainer.backgroundImage = "/images/Background.png";
+	}
+});

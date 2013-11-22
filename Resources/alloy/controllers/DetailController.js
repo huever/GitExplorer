@@ -1,8 +1,6 @@
 function Controller() {
     function back() {
-        $.mainContainer.close({
-            transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT
-        });
+        $.mainContainer.close();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "DetailController";
@@ -15,7 +13,8 @@ function Controller() {
     $.__views.mainContainer = Ti.UI.createWindow({
         backgroundColor: "white",
         layout: "vertical",
-        backgroundImage: "/images/detail.png",
+        navBarHidden: true,
+        backgroundImage: "/images/Background.png",
         id: "mainContainer"
     });
     $.__views.mainContainer && $.addTopLevelView($.__views.mainContainer);
@@ -36,6 +35,7 @@ function Controller() {
     back ? $.__views.backButton.addEventListener("click", back) : __defers["$.__views.backButton!click!back"] = true;
     $.__views.titleLabel = Ti.UI.createLabel({
         top: 18,
+        color: "#070707",
         width: Ti.UI.FILL,
         textAlign: "center",
         id: "titleLabel"
@@ -48,6 +48,10 @@ function Controller() {
     });
     $.__views.mainContainer.add($.__views.border);
     $.__views.owner = Ti.UI.createLabel({
+        font: {
+            fontSize: 22
+        },
+        color: "#070707",
         id: "owner"
     });
     $.__views.mainContainer.add($.__views.owner);
@@ -64,6 +68,7 @@ function Controller() {
             fontSize: 18
         },
         top: 10,
+        color: "#070707",
         id: "description"
     });
     $.__views.mainContainer.add($.__views.description);
@@ -72,6 +77,7 @@ function Controller() {
         font: {
             fontSize: 14
         },
+        color: "#727272",
         id: "descriptionText"
     });
     $.__views.mainContainer.add($.__views.descriptionText);
@@ -81,6 +87,7 @@ function Controller() {
             fontSize: 18
         },
         top: 10,
+        color: "#070707",
         id: "url"
     });
     $.__views.mainContainer.add($.__views.url);
@@ -89,6 +96,7 @@ function Controller() {
         font: {
             fontSize: 14
         },
+        color: "#727272",
         id: "urlText"
     });
     $.__views.mainContainer.add($.__views.urlText);
@@ -102,6 +110,13 @@ function Controller() {
     $.owner.text = args.info.owner.login;
     $.description.text = L("detailDescription");
     $.url.text = L("detailURL");
+    $.mainContainer.addEventListener("android:back", function() {
+        back();
+    });
+    $.backButton.visible = false;
+    Ti.Gesture.addEventListener("orientationchange", function() {
+        $.mainContainer.backgroundImage = Ti.Gesture.orientation == Ti.UI.LANDSCAPE_LEFT || Ti.Gesture.orientation == Ti.UI.LANDSCAPE_RIGHT ? "/images/Background-land.png" : "/images/Background.png";
+    });
     __defers["$.__views.backButton!click!back"] && $.__views.backButton.addEventListener("click", back);
     _.extend($, exports);
 }

@@ -1,10 +1,12 @@
 "Window": {
 	backgroundColor:"white",
-	layout: "vertical"
+	layout: "vertical",
+	navBarHidden : true
 },
 
 ".title": {
-	top: 20
+	top: 20,
+	color: "#070707"
 },
 
 "TextField": {
@@ -26,7 +28,6 @@
 	borderWidth: 3,
 	borderColor: "#5a6f7a",
 	color: "white",
-	top: 10
 }
 
 ".actionButtonSmall":{
